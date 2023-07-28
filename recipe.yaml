@@ -1,0 +1,36 @@
+$engine: 3
+$onesync: on
+name: Feather
+description: Some stuff for testing.
+version: 1.0.0
+author: bcc
+
+
+tasks: 
+  # Prepare Database
+  - action: connect_database
+
+  # Download default CFX resources
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    ref: master
+    subpath: resources
+    dest: ./resources
+
+  # Download default server.cfg for RedM
+  - action: download_file
+    url: https://raw.githubusercontent.com/AndrewR3K/feathertest/main/server_redm.cfg
+    path: ./server.cfg
+
+  # Download default server.cfg for RedM
+  - action: download_file
+    url: https://raw.githubusercontent.com/AndrewR3K/feathertest/main/server_redm.cfg
+    path: ./server.cfg
+
+  # Migrate(Setup) Database Tables
+  - action: query_database
+    file: ./database/migration.sql
+
+  # Seed Database
+  - action: query_database
+    file: ./database/seed.sql
