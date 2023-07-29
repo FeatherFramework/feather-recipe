@@ -18,17 +18,17 @@ tasks:
 
   # Download default server.cfg for RedM
   - action: download_file
-    url: https://raw.githubusercontent.com/AndrewR3K/feathertest/main/server_redm.cfg
+    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/server_redm.cfg
     path: ./server.cfg
 
   # Download default server.cfg for RedM
   - action: download_file
-    url: https://raw.githubusercontent.com/AndrewR3K/feathertest/main/servericons.png
+    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/servericons.png
     path: ./servericons.png
 
   # Download default server.cfg for RedM
   - action: download_file
-    url: https://raw.githubusercontent.com/AndrewR3K/feathertest/main/database
+    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/database
     path: ./database
 
   # Migrate(Setup) Database Tables
