@@ -18,13 +18,13 @@ tasks:
 
   # Download default server.cfg for RedM
   - action: download_file
-    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/server_redm.cfg
+    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/server.cfg
     path: ./server.cfg
 
   # Download default server.cfg for RedM
   - action: download_file
-    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/servericons.png
-    path: ./servericons.png
+    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/servericon.png
+    path: ./servericon.png
 
   # Download default server.cfg for RedM
   - action: download_file
