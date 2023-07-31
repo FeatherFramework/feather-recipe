@@ -47,10 +47,13 @@ tasks:
     dest: ./resources/[feather]/feather-core
 
   # Download OxmySQL dependency 
-  - action: download_github
-    src: https://github.com/overextended/oxmysql
-    ref: v2.7.1
-    dest: ./resources/[essentials]/oxmysql
+  - action: download_file
+    path: ./temp/files/oxmysql.zip
+    url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
+
+  - action: unzip
+    src: ./temp/files/oxmysql.zip
+    dest: ./resources/[essentials]
 
   # Download Weathersync dependency 
   - action: download_github
