@@ -49,7 +49,7 @@ tasks:
   # Download OxmySQL dependency 
   - action: download_github
     src: https://github.com/overextended/oxmysql
-    ref: v2.7.3
+    ref: v2.7.1
     dest: ./resources/[essentials]/oxmysql
 
   # Download Weathersync dependency 
