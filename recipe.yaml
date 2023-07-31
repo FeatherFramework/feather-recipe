@@ -10,18 +10,17 @@ tasks:
   - action: connect_database
 
   # Download DB
-  - action: download_file
-    url: https://github.com/FeatherFramework/feather-recipe/tree/main/database
-    ref: main
-    path: ./database
+  - action: download_github
+    url: https://github.com/FeatherFramework/feather-recipe
+    path: ./temp/feather-recipe
 
   # Migrate(Setup) Database Tables
   - action: query_database
-    file: ./database/migration.sql
+    file: ./temp/feather-recipe/database/migration.sql
 
   # Seed Database
   - action: query_database
-    file: ./database/seed.sql
+    file: ./temp/feather-recipe/database/seed.sql
 
   # Download default CFX resources
   - action: download_github
@@ -30,22 +29,22 @@ tasks:
     subpath: resources
     dest: ./resources
 
-  # Download default server config
-  - action: download_file
-    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/server.cfg
-    path: ./server.cfg
+  # Move the server config over
+  - action: move_path
+    src: ./temp/feather-recipe/server.cfg
+    dest: ./server.cfg
 
-  # Download default server icon
-  - action: download_file
-    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/servericon.png
-    path: ./servericon.png
+  # Move the server icon over 
+  - action: move_path
+    src: ./temp/feather-recipe/servericon.png
+    dest: ./servericon.png
 
   # Download Feather files
-  - action: download_file
+  - action: download_github
     url: https://github.com/FeatherFramework/feather-core
     ref: main
     path: ./resources/[feather]
 
   # Clean up db files
   - action: remove_path
-    path: ./database
+    path: ./temp
