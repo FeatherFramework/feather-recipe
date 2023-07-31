@@ -1,7 +1,7 @@
 $engine: 3
 $onesync: on
 name: Feather
-description: Some stuff for testing.
+description: The official recipe for Feather Framework.
 version: 1.0.0
 author: bcc
 
