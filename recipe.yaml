@@ -44,7 +44,19 @@ tasks:
   - action: download_github
     src: https://github.com/FeatherFramework/feather-core
     ref: main
-    dest: ./resources/[feather]
+    dest: ./resources/[feather]/feather-core
+
+  # Download OxmySQL dependency 
+  - action: download_github
+    src: https://github.com/overextended/oxmysql
+    ref: main
+    dest: ./resources/[essentials]/oxmysql
+
+  # Download Weathersync dependency 
+  - action: download_github
+    src: https://github.com/kibook/weathersync
+    ref: main
+    dest: ./resources/[essentials]/weathersync
 
   # Clean up db files
   - action: remove_path
