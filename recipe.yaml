@@ -11,7 +11,8 @@ tasks:
 
   # Download DB
   - action: download_file
-    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/database
+    url: https://github.com/FeatherFramework/feather-recipe/database
+    ref: main
     path: ./database
 
   # Migrate(Setup) Database Tables
