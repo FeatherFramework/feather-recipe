@@ -2,7 +2,8 @@ CREATE TABLE `roles` (
     `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `level` int NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX role_name (`name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `users` (
@@ -10,7 +11,6 @@ CREATE TABLE `users` (
     `role_id` bigint UNSIGNED NOT NULL,
     `username` varchar(255) NOT NULL,
     `license` varchar(255) NOT NULL,
-    `steam_id` varchar(255) NOT NULL,
     `created_at` TimeStamp,
     `updated_at` TimeStamp,
     PRIMARY KEY (`id`),
