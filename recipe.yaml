@@ -11,8 +11,9 @@ tasks:
 
   # Download DB
   - action: download_github
-    url: https://github.com/FeatherFramework/feather-recipe
-    path: ./temp/feather-recipe
+    src: https://github.com/FeatherFramework/feather-recipe
+    ref: main
+    dest: ./temp/feather-recipe
 
   # Migrate(Setup) Database Tables
   - action: query_database
@@ -41,9 +42,9 @@ tasks:
 
   # Download Feather files
   - action: download_github
-    url: https://github.com/FeatherFramework/feather-core
+    src: https://github.com/FeatherFramework/feather-core
     ref: main
-    path: ./resources/[feather]
+    dest: ./resources/[feather]
 
   # Clean up db files
   - action: remove_path
