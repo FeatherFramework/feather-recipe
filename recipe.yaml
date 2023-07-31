@@ -55,7 +55,7 @@ tasks:
   # Download Weathersync dependency 
   - action: download_github
     src: https://github.com/kibook/weathersync
-    ref: main
+    ref: master
     dest: ./resources/[essentials]/weathersync
 
   # Clean up db files
