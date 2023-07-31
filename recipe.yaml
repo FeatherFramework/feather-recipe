@@ -9,24 +9,7 @@ tasks:
   # Prepare Database
   - action: connect_database
 
-  # Download default CFX resources
-  - action: download_github
-    src: https://github.com/citizenfx/cfx-server-data
-    ref: master
-    subpath: resources
-    dest: ./resources
-
-  # Download default server.cfg for RedM
-  - action: download_file
-    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/server.cfg
-    path: ./server.cfg
-
-  # Download default server.cfg for RedM
-  - action: download_file
-    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/servericon.png
-    path: ./servericon.png
-
-  # Download default server.cfg for RedM
+  # Download DB
   - action: download_file
     url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/database
     path: ./database
@@ -38,6 +21,29 @@ tasks:
   # Seed Database
   - action: query_database
     file: ./database/seed.sql
+
+  # Download default CFX resources
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    ref: master
+    subpath: resources
+    dest: ./resources
+
+  # Download default server config
+  - action: download_file
+    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/server.cfg
+    path: ./server.cfg
+
+  # Download default server icon
+  - action: download_file
+    url: https://raw.githubusercontent.com/FeatherFramework/feather-recipe/main/servericon.png
+    path: ./servericon.png
+
+  # Download Feather files
+  - action: download_file
+    url: https://github.com/FeatherFramework/feather-core
+    ref: main
+    path: ./resources/[feather]
 
   # Clean up db files
   - action: remove_path
