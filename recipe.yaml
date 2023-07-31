@@ -11,7 +11,7 @@ tasks:
 
   # Download DB
   - action: download_file
-    url: https://github.com/FeatherFramework/feather-recipe/database
+    url: https://github.com/FeatherFramework/feather-recipe/tree/main/database
     ref: main
     path: ./database
 
