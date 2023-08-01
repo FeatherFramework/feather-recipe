@@ -29,6 +29,7 @@ CREATE TABLE `characters` (
     `x` decimal(15,10) NOT NULL,
     `y` decimal(15,10) NOT NULL,
     `z` decimal(15,10) NOT NULL,
+    `lang` varchar(255) NOT NULL,
     `created_at` TimeStamp,
     `updated_at` TimeStamp,
     PRIMARY KEY (`id`),
