@@ -8,18 +8,17 @@ CREATE TABLE `roles` (
 
 CREATE TABLE `users` (
     `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-    `role_id` bigint UNSIGNED NOT NULL,
     `username` varchar(255) NOT NULL,
     `license` varchar(255) NOT NULL,
     `created_at` TimeStamp,
     `updated_at` TimeStamp,
     PRIMARY KEY (`id`),
-    CONSTRAINT `FK_Role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `characters` (
     `id` bigint UNSIGNED  NOT NULL AUTO_INCREMENT,
     `user_id` bigint UNSIGNED  NOT NULL,
+    `role_id` bigint UNSIGNED NOT NULL,
     `first_name` varchar(255) NOT NULL,
     `last_name` varchar(255) NOT NULL,
     `dob` varchar(255) NOT NULL,
