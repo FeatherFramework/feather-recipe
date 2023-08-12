@@ -6,24 +6,19 @@ CREATE TABLE `roles` (
     UNIQUE INDEX role_name (`name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO roles (name, level) VALUES ('general', 0);
-INSERT INTO roles (name, level) VALUES ('admin', 99);
-
 CREATE TABLE `users` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `username` varchar(255) NOT NULL,
     `license` varchar(255) NOT NULL,
-    `role_id` BIGINT UNSIGNED NULL DEFAULT 1,
     `created_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    CONSTRAINT `FK_Role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `characters` (
     `id` BIGINT UNSIGNED  NOT NULL AUTO_INCREMENT,
     `user_id` BIGINT UNSIGNED  NOT NULL,
-    `role_id` BIGINT UNSIGNED NOT NULL,
+    `role_id` BIGINT UNSIGNED NOT NULL DEFAULT 1,
     `first_name` varchar(255) NOT NULL,
     `last_name` varchar(255) NOT NULL,
     `dob` varchar(255) NOT NULL,
