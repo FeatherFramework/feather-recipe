@@ -20,8 +20,8 @@ tasks:
     file: ./temp/feather-recipe/database/migration.sql
 
   # Seed Database
-  - action: query_database
-    file: ./temp/feather-recipe/database/seed.sql
+  # - action: query_database
+  #   file: ./temp/feather-recipe/database/seed.sql
 
   # Download default CFX resources
   - action: download_github
@@ -35,7 +35,7 @@ tasks:
     src: ./temp/feather-recipe/server.cfg
     dest: ./server.cfg
 
-  # Move the server icon over 
+  # Move the server icon over
   - action: move_path
     src: ./temp/feather-recipe/servericon.png
     dest: ./servericon.png
@@ -46,7 +46,7 @@ tasks:
     ref: main
     dest: ./resources/[feather]/feather-core
 
-  # Download OxmySQL dependency 
+  # Download OxmySQL dependency
   - action: download_file
     path: ./temp/files/oxmysql.zip
     url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
@@ -55,7 +55,7 @@ tasks:
     src: ./temp/files/oxmysql.zip
     dest: ./resources/[essentials]
 
-  # Download Weathersync dependency 
+  # Download Weathersync dependency
   - action: download_github
     src: https://github.com/kibook/weathersync
     ref: master
