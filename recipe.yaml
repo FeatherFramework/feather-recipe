@@ -20,8 +20,8 @@ tasks:
     file: ./temp/feather-recipe/database/migration.sql
 
   # Seed Database
-  # - action: query_database
-  #   file: ./temp/feather-recipe/database/seed.sql
+  - action: query_database
+    file: ./temp/feather-recipe/database/seed.sql
 
   # Download default CFX resources
   - action: download_github
