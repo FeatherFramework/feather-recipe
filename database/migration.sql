@@ -1,5 +1,5 @@
 CREATE TABLE `roles` (
-    `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `level` int NOT NULL,
     PRIMARY KEY (`id`),
@@ -10,20 +10,20 @@ INSERT INTO roles (name, level) VALUES ('general', 0);
 INSERT INTO roles (name, level) VALUES ('admin', 99);
 
 CREATE TABLE `users` (
-    `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `username` varchar(255) NOT NULL,
     `license` varchar(255) NOT NULL,
-    `role_id` bigint NULL DEFAULT 1,
+    `role_id` BIGINT UNSIGNED NULL DEFAULT 1,
     `created_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
-    CONSTRAINT `FK_Role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT `FK_Role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `characters` (
-    `id` bigint UNSIGNED  NOT NULL AUTO_INCREMENT,
-    `user_id` bigint UNSIGNED  NOT NULL,
-    `role_id` bigint UNSIGNED NOT NULL,
+    `id` BIGINT UNSIGNED  NOT NULL AUTO_INCREMENT,
+    `user_id` BIGINT UNSIGNED  NOT NULL,
+    `role_id` BIGINT UNSIGNED NOT NULL,
     `first_name` varchar(255) NOT NULL,
     `last_name` varchar(255) NOT NULL,
     `dob` varchar(255) NOT NULL,
@@ -42,14 +42,14 @@ CREATE TABLE `characters` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `inventory` (
-    `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-    `entity_id` bigint UNSIGNED NOT NULL,
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `entity_id` BIGINT UNSIGNED NOT NULL,
     `entity_type` varchar(255) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `items` (
-    `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
     `max_quantity` int DEFAULT 0,
     `model_name` varchar(255) NOT NULL,
@@ -58,9 +58,9 @@ CREATE TABLE `items` (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE `InventoryItems` (
-    `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-    `inventory_id` bigint UNSIGNED NOT NULL,
-    `item_id` bigint UNSIGNED NOT NULL,
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `inventory_id` BIGINT UNSIGNED NOT NULL,
+    `item_id` BIGINT UNSIGNED NOT NULL,
     `name` varchar(255) NOT NULL,
     `quantity` int NOT NULL,
     PRIMARY KEY (`id`),
@@ -69,8 +69,8 @@ CREATE TABLE `InventoryItems` (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE `InventoryAllowList` (
-    `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-    `inventory_id` bigint UNSIGNED NOT NULL,
-    `entity_id` bigint UNSIGNED NOT NULL,
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `inventory_id` BIGINT UNSIGNED NOT NULL,
+    `entity_id` BIGINT UNSIGNED NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4;
