@@ -76,8 +76,7 @@ CREATE TABLE `item_metadata` (
     `item_id` BIGINT UNSIGNED NOT NULL,
     `key` VARCHAR(50) NOT NULL,
     `value` VARCHAR(100) NOT NULL,
-    PRIMARY KEY (`inventory_id`, `item_id`),
-    INDEX `Inventory_Item` USING BTREE (`inventory_id`, `item_id`)
+    PRIMARY KEY (`inventory_id`, `item_id`)
 )ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE `inventory_allowList` (
