@@ -38,10 +38,17 @@ CREATE TABLE `characters` (
 
 CREATE TABLE `inventory` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `entity_id` BIGINT UNSIGNED NOT NULL,
-    `entity_type` varchar(255) NOT NULL,
-    PRIMARY KEY (`id`)
+    `uuid` UUID NOT NULL DEFAULT UUID(),
+    `character_id` BIGINT UNSIGNED NULL,
+    PRIMARY KEY (`id`),
+    CONSTRAINT `FK_InventoryCharacter` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `categories` (
+    `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE `items` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -49,21 +56,31 @@ CREATE TABLE `items` (
     `max_quantity` int DEFAULT 0,
     `model_name` varchar(255) NOT NULL,
     `usable` boolean DEFAULT false,
-    PRIMARY KEY (`id`)
+    `category_id` BIGINT UNSIGNED NOT NULL DEFAULT 1,
+    PRIMARY KEY (`id`),
+    CONSTRAINT `FK_Category` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE `InventoryItems` (
+CREATE TABLE `inventory_items` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `inventory_id` BIGINT UNSIGNED NOT NULL,
     `item_id` BIGINT UNSIGNED NOT NULL,
-    `name` varchar(255) NOT NULL,
     `quantity` int NOT NULL,
     PRIMARY KEY (`id`),
     CONSTRAINT `FK_Inventory` FOREIGN KEY (`inventory_id`) REFERENCES `inventory` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_InventoryItem` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4;
 
-CREATE TABLE `InventoryAllowList` (
+CREATE TABLE `item_metadata` (
+    `inventory_id` BIGINT UNSIGNED NOT NULL,
+    `item_id` BIGINT UNSIGNED NOT NULL,
+    `key` VARCHAR(50) NOT NULL,
+    `value` VARCHAR(100) NOT NULL,
+    PRIMARY KEY (`inventory_id`, `item_id`),
+    INDEX `Inventory_Item` USING BTREE (`inventory_id`, `item_id`)
+)ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE `inventory_allowList` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `inventory_id` BIGINT UNSIGNED NOT NULL,
     `entity_id` BIGINT UNSIGNED NOT NULL,
