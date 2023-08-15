@@ -59,9 +59,11 @@ CREATE TABLE `categories` (
 CREATE TABLE `items` (
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` varchar(255) NOT NULL,
-    `max_quantity` int DEFAULT 0,
+    `max_quantity` int DEFAULT 1,
+    `max_stack` int default 10,
     `model_name` varchar(255) NOT NULL,
     `usable` boolean DEFAULT false,
+    `weight` INT UNSIGNED NOT NULL DEFAULT 5,
     `category_id` BIGINT UNSIGNED NOT NULL,
     `created_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
