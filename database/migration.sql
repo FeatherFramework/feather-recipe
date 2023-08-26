@@ -25,6 +25,7 @@ CREATE TABLE `characters` (
     `dob` varchar(255) NOT NULL,
     `dollars` decimal(15,3) NOT NULL,
     `gold` decimal(15,3) NOT NULL,
+    `tokens` BIGINT NOT NULL,
     `xp` float NOT NULL,
     `x` decimal(15,10) NOT NULL,
     `y` decimal(15,10) NOT NULL,
