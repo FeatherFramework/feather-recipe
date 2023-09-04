@@ -40,11 +40,14 @@ tasks:
     src: ./temp/feather-recipe/servericon.png
     dest: ./servericon.png
 
-  # Download Feather files
-  - action: download_github
-    src: https://github.com/FeatherFramework/feather-core
-    ref: main
-    dest: ./resources/[feather]/feather-core
+  # Download Feather dependency
+  - action: download_file
+    path: ./temp/files/feather-core.zip
+    url: https://github.com/FeatherFramework/feather-core/releases/latest/download/feather-core.zip
+
+  - action: unzip
+    src: ./temp/files/feather-core.zip
+    dest: ./resources/[feather]
 
   # Download OxmySQL dependency
   - action: download_file
