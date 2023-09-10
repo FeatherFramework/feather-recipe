@@ -63,6 +63,7 @@ CREATE TABLE `items` (
   `weight` int(11) NOT NULL DEFAULT 0,
   `usable` tinyint(1) DEFAULT 0,
   `category_id` bigint(20) unsigned NOT NULL,
+  `type` ENUM('item_item', 'item_weapon', 'item_ammo') DEFAULT 'item_item',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   KEY `FK_Category` (`category_id`) USING BTREE,
