@@ -38,6 +38,19 @@ CREATE TABLE `characters` (
     CONSTRAINT `FK_Role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `appearances` (
+    `id` BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `character_id` BIGINT UNSIGNED NOT NULL,
+    `name` varchar(255) NOT NULL DEFAULT 'Default',
+    `skin` JSON NOT NULL,
+    `components` JSON NOT NULL,
+    `is_active` tinyint DEFAULT 0,
+    `created_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT `FK_AppearanceCharacter` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    INDEX compound(`character_id`, `is_active`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE `inventory` (
     `id` BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `uuid` UUID NOT NULL DEFAULT UUID(),
