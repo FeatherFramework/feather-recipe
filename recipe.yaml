@@ -47,7 +47,7 @@ tasks:
 
   - action: unzip
     src: ./temp/files/feather-core.zip
-    dest: ./resources/[feather]
+    dest: ./resources/[feather]/feather-core
 
   # Download OxmySQL dependency
   - action: download_file
