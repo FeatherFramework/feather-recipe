@@ -31,6 +31,7 @@ CREATE TABLE `characters` (
     `y` decimal(15,10) NOT NULL,
     `z` decimal(15,10) NOT NULL,
     `lang` varchar(255) NOT NULL,
+    `clothing` varchar(10000) NOT NULL,
     `dead` tinyint DEFAULT 0,
     `created_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
