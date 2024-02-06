@@ -74,6 +74,7 @@ CREATE TABLE `categories` (
 CREATE TABLE `items` (
   `id` bigint UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `display_name` varchar(255) NOT NULL,
   `description` varchar(255) NULL,
   `max_quantity` int(11) DEFAULT 0,
   `max_stack_size` int(11) NOT NULL DEFAULT 10,
