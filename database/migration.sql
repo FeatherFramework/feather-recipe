@@ -40,6 +40,16 @@ CREATE TABLE `characters` (
     CONSTRAINT `FK_Role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE IF NOT EXISTS `character_appearance` (
+  `id` bigint(20) unsigned NOT NULL,
+  `attributes` text DEFAULT '{}',
+  `clothing` text DEFAULT '{}',
+  `overlays` text DEFAULT '{}',
+  `clothingtints` text DEFAULT '{}',
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_character_appearance_characters` FOREIGN KEY (`id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `appearances` (
     `id` BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `character_id` BIGINT UNSIGNED NOT NULL,
