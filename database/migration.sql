@@ -53,9 +53,29 @@ CREATE TABLE `appearances` (
     INDEX compound(`character_id`, `is_active`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE IF NOT EXISTS `character_appearance` (
+  `id` bigint(20) unsigned NOT NULL,
+  `attributes` text DEFAULT '{}',
+  `clothing` text DEFAULT '{}',
+  `overlays` text DEFAULT '{}',
+  `clothingtints` text DEFAULT '{}',
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_character_appearance_characters` FOREIGN KEY (`id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `ground` (
+    `id` BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `x` decimal(15,10) NOT NULL,
+    `y` decimal(15,10) NOT NULL,
+    `z` decimal(15,10) NOT NULL,
+    `created_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE `inventory` (
     `id` BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `uuid` UUID NOT NULL DEFAULT UUID(),
+    `name` varchar(255) NULL,
     `max_weight` INT UNSIGNED NULL,
     `ignore_item_limit` tinyint DEFAULT 0,
     `character_id` BIGINT UNSIGNED NULL,
