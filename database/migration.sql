@@ -65,6 +65,7 @@ CREATE TABLE `inventory` (
     `uuid` UUID NOT NULL DEFAULT UUID(),
     `name` varchar(255) NULL,
     `max_weight` INT UNSIGNED NULL,
+    `location` varchar(255) NULL,
     `ignore_item_limit` tinyint DEFAULT 0,
     `character_id` BIGINT UNSIGNED NULL,
     `created_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
