@@ -40,7 +40,9 @@ tasks:
     src: ./temp/feather-recipe/servericon.png
     dest: ./servericon.png
 
-  # Download Feather dependency
+  # Downloading Feather Framework Scripts
+
+  # Core
   - action: download_file
     path: ./temp/files/feather-core.zip
     url: https://github.com/FeatherFramework/feather-core/releases/latest/download/feather-core.zip
@@ -48,6 +50,30 @@ tasks:
   - action: unzip
     src: ./temp/files/feather-core.zip
     dest: ./resources/[feather]/feather-core
+
+  # Menu
+  - action: download_file
+    path: ./temp/files/feather-menu.zip
+    url: https://github.com/FeatherFramework/feather-menu/releases/latest/download/feather-menu.zip
+
+  - action: unzip
+    src: ./temp/files/feather-menu.zip
+    dest: ./resources/[feather]/feather-menu
+
+  # Character
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-character
+    ref: main
+    dest: ./resources/[feather]/feather-character
+
+  # Inventory
+  - action: download_file
+    path: ./temp/files/feather-inventory.zip
+    url: https://github.com/FeatherFramework/feather-inventory/releases/latest/download/feather-inventory.zip
+
+  - action: unzip
+    src: ./temp/files/feather-inventory.zip
+    dest: ./resources/[feather]/feather-inventory
 
   # Download OxmySQL dependency
   - action: download_file
