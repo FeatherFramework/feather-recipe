@@ -66,6 +66,12 @@ tasks:
     ref: main
     dest: ./resources/[feather]/feather-character
 
+  # Weapons
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-weapons
+    ref: main
+    dest: ./resources/[feather]/feather-weapons
+
   # Inventory
   - action: download_file
     path: ./temp/files/feather-inventory.zip
