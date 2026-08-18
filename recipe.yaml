@@ -80,6 +80,7 @@ tasks:
   - action: unzip
     src: ./temp/files/feather-inventory.zip
     dest: ./resources/[feather]/feather-inventory
+    timeoutSeconds: 600
 
   # Download OxmySQL dependency
   - action: download_file
