@@ -63,13 +63,32 @@ CREATE TABLE `inventory` (
     `id` BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `uuid` UUID NOT NULL DEFAULT UUID(),
     `name` varchar(255) NULL,
-    `max_weight` INT UNSIGNED NULL,
+    -- DECIMAL, not INT: weights are summed across every row and compared
+    -- against this limit, so it has to be exact. 0 means "no weight limit"
+    -- (ground piles register that way); NULL means "use Config.maxWeight".
+    `max_weight` DECIMAL(8, 2) NULL,
     `location` varchar(255) NULL,
     `ignore_item_limit` tinyint DEFAULT 0,
     `character_id` BIGINT UNSIGNED NULL,
+    -- Ownership + sharing for non-character inventories (storage, lockers).
+    `owner_character_id` BIGINT UNSIGNED NULL,
+    -- Public inventories (ground piles) are readable by anyone; taking from
+    -- one still requires live proximity, enforced in feather-inventory.
+    `is_public` TINYINT(1) NOT NULL DEFAULT 0,
+    -- Per-inventory compartment count. NULL falls back to Config.maxItemSlots.
+    `max_slots` SMALLINT UNSIGNED NULL,
+    -- Foreign key for ground piles. feather-inventory's RegisterForeignKey
+    -- creates columns like this at runtime for any resource that registers
+    -- one; ground is seeded here because it ships with the framework.
+    `ground_id` BIGINT UNSIGNED NULL,
     `created_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT `FK_InventoryCharacter` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+    -- One inventory per character. Without this, a spawn race could create a
+    -- second inventory for the same character and silently split their items.
+    UNIQUE KEY `UQ_InventoryCharacter` (`character_id`),
+    CONSTRAINT `FK_InventoryCharacter` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_InventoryOwner` FOREIGN KEY (`owner_character_id`) REFERENCES `characters` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT `FK_InventoryGround` FOREIGN KEY (`ground_id`) REFERENCES `ground` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4;
 CREATE TABLE `categories` (
     `id` BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -84,10 +103,19 @@ CREATE TABLE `items` (
     `description` varchar(255) NULL,
     `max_quantity` int(11) DEFAULT 0,
     `max_stack_size` int(11) NOT NULL DEFAULT 10,
-    `weight` int(11) NOT NULL DEFAULT 0,
+    -- DECIMAL, not INT, so an item can weigh less than a pound. Exact
+    -- fixed-point rather than FLOAT because weights are SUMmed across an
+    -- inventory and compared against a limit -- binary floating point
+    -- accumulates error and makes that comparison unreliable at the boundary.
+    `weight` DECIMAL(6, 2) NOT NULL DEFAULT 0,
     `usable` tinyint(1) DEFAULT 0,
     `category_id` bigint(20) unsigned NOT NULL,
     `type` ENUM('item_item', 'item_weapon', 'item_ammo') DEFAULT 'item_item',
+    -- 'unique' means every unit is its own instance and never shares a
+    -- compartment; 'stack' means units are interchangeable. Anything carrying
+    -- per-instance state (a weapon's ammo, an item's condition) must be
+    -- 'unique', or two units with different state would merge and lose one.
+    `instance_mode` ENUM('stack', 'unique') NOT NULL DEFAULT 'stack',
     `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     KEY `FK_Category` (`category_id`) USING BTREE,
@@ -98,6 +126,19 @@ CREATE TABLE `inventory_items` (
     `id` BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `inventory_id` BIGINT UNSIGNED NOT NULL,
     `item_id` BIGINT UNSIGNED NOT NULL,
+    -- Persisted grid placement. NULL means "not placed yet".
+    `slot_index` SMALLINT NULL,
+    -- Versioned per-instance state document. Replaces the flat item_metadata
+    -- table below, which is retained only for backwards compatibility and is
+    -- no longer written or read by feather-inventory.
+    `metadata` JSON NULL,
+    -- Bumped when the DOCUMENT changes.
+    `metadata_revision` INT UNSIGNED NOT NULL DEFAULT 0,
+    -- Bumped when ANYTHING about the row changes, including a move. A
+    -- compare-and-set should use this one: reading an item, having it moved
+    -- by another request, then committing against the stale read must
+    -- conflict, and a move leaves metadata untouched.
+    `row_revision` INT UNSIGNED NOT NULL DEFAULT 0,
     `created_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT `FK_Inventory` FOREIGN KEY (`inventory_id`) REFERENCES `inventory` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -121,6 +162,33 @@ CREATE TABLE `inventory_blacklist` (
     CONSTRAINT `FK_InventoryItemBlacklist` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (`inventory_id`, `item_id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4;
+CREATE TABLE `inventory_access` (
+    `id` BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `inventory_id` BIGINT UNSIGNED NOT NULL,
+    `character_id` BIGINT UNSIGNED NOT NULL,
+    `granted_by_character_id` BIGINT UNSIGNED NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY `UQ_InventoryAccess` (`inventory_id`, `character_id`),
+    CONSTRAINT `FK_InventoryAccessInventory` FOREIGN KEY (`inventory_id`) REFERENCES `inventory` (`id`) ON DELETE CASCADE,
+    CONSTRAINT `FK_InventoryAccessCharacter` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+CREATE TABLE `character_equipment` (
+    `character_id` BIGINT UNSIGNED NOT NULL,
+    -- Slot name is chosen by the consuming resource ('primary', 'holster',
+    -- 'hat'). Inventory stores and constrains it without knowing what it
+    -- means, so any resource can use this without inventory learning its
+    -- domain.
+    `slot` VARCHAR(50) NOT NULL,
+    `inventory_items_id` BIGINT UNSIGNED NOT NULL,
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`character_id`, `slot`),
+    -- One instance cannot occupy two slots at once.
+    UNIQUE KEY `UQ_EquipmentInstance` (`inventory_items_id`),
+    CONSTRAINT `FK_EquipmentCharacter` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE,
+    -- Destroying the item unequips it rather than leaving a dangling row.
+    CONSTRAINT `FK_EquipmentInstance` FOREIGN KEY (`inventory_items_id`) REFERENCES `inventory_items` (`id`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 CREATE TABLE IF NOT EXISTS ammo (
     char_id BIGINT UNSIGNED NOT NULL,
     ammo_22 INT UNSIGNED NOT NULL DEFAULT 0,
