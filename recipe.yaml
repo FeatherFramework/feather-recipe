@@ -44,7 +44,7 @@ tasks:
   # Core
   - action: download_github
     src: https://github.com/FeatherFramework/feather-core
-    ref: 0.2.0
+    ref: main
     dest: ./resources/[feather]/feather-core
 
     # HUD
@@ -68,26 +68,30 @@ tasks:
     # Admin
   - action: download_github
     src: https://github.com/FeatherFramework/feather-admin
-    ref: 0.5.0
+    ref: main
     dest: ./resources/[feather]/feather-admin
 
   # Character
   - action: download_github
     src: https://github.com/FeatherFramework/feather-character
-    ref: 0.3.0
+    ref: main
     dest: ./resources/[feather]/feather-character
 
   # Weapons
   - action: download_github
     src: https://github.com/FeatherFramework/feather-weapons
-    ref: 0.4.0
+    ref: main
     dest: ./resources/[feather]/feather-weapons
 
   # Inventory
-  - action: download_github
-    src: https://github.com/FeatherFramework/feather-inventory
-    ref: 0.3.0
+  - action: download_file
+    path: ./temp/files/feather-inventory.zip
+    url: https://github.com/FeatherFramework/feather-inventory/releases/latest/download/feather-inventory.zip
+
+  - action: unzip
+    src: ./temp/files/feather-inventory.zip
     dest: ./resources/[feather]/feather-inventory
+    timeoutSeconds: 600
 
   # Download OxmySQL dependency
   - action: download_file
