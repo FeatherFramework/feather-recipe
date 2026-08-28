@@ -3,21 +3,17 @@
 > This is the official recipe for the Feather Framework
 
 ## Features
-- Customizable Menu API system
-- Core
-    - Death Tracking
-    - Position Tracking
-    - PVP
-    - Locales
-    - Developer Utilizy APIs
-    - and more!
-- Character
-    - Clothing
-    - Attributes
-    - Character selector
-    - and more!
-- Inventory
-- Weapons
+
+- Contract-based Core account identity, sessions, RPC, events, providers, policies, and guards
+- UUID Character creation, selection, appearance, deletion, spawn, travel, logout, and doctor respawn
+- Transactional Inventory with metadata, revisions, equipment, access control, and UUID ownership
+- Persistent Weapons equipment, ammunition, condition, repair, and attachments
+- Account-based Admin moderation, reports, cases, player notes, inventory inspection, and weapon grants
+- Feather Menu and HUD integration
+
+Core, Character, and Admin apply their own versioned database migrations when
+the server starts. The recipe bootstraps only Inventory's base catalog tables
+and the supported starter items.
 
 ## Setup Guide and Requirements
 
