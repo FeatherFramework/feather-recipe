@@ -9,11 +9,18 @@
 - Transactional Inventory with metadata, revisions, equipment, access control, and UUID ownership
 - Persistent Weapons equipment, ammunition, condition, repair, and attachments
 - Account-based Admin moderation, reports, cases, player notes, inventory inspection, and weapon grants
+- Authoritative routing buckets and restart-safe character selection isolation
+- Standalone notification, world, PVP, settings, and reusable Toolkit services
+- Optional operator-owned GitHub release reporting through Feather Versioner
 - Feather Menu and HUD integration
 
 Core, Character, and Admin apply their own versioned database migrations when
 the server starts. The recipe bootstraps only Inventory's base catalog tables
 and the supported starter items.
+
+The generated startup order loads Core before its providers and consumers,
+Routing before Character, PVP before Settings, and Versioner after all checked
+framework resources.
 
 ## Setup Guide and Requirements
 
@@ -25,12 +32,5 @@ and the supported starter items.
 
 ## Troubleshooting
 
-If you encounter any issues or have questions, post in our [discords](https://discord.gg/zBCPbPJGZw) bugs and support channel. You may also open an issue on the issue tracker tab of GitHub.
-
-## Contributing
-
-Contributions to the any of our Feather scripts are welcome! If you have improvements or bug fixes, feel free to submit a pull request.
-
-## License
-
-This inventory script is licensed under GPL3 License. Refer to the LICENSE file for more information.
+If you encounter any issues or have questions, post in our [discord](https://discord.gg/zBCPbPJGZw).
+You may also open an issue in GitHub.
