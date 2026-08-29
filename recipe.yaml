@@ -2,7 +2,7 @@ $engine: 3
 $onesync: on
 name: Feather
 description: The official recipe for Feather Framework.
-version: 2.0.0
+version: 2.1.0
 author: bcc
 
 tasks:
@@ -47,7 +47,49 @@ tasks:
     ref: main
     dest: ./resources/[feather]/feather-core
 
-    # HUD
+  # Routing
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-routing
+    ref: main
+    dest: ./resources/[feather]/feather-routing
+
+  # Notify
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-notify
+    ref: main
+    dest: ./resources/[feather]/feather-notify
+
+  # World
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-world
+    ref: main
+    dest: ./resources/[feather]/feather-world
+
+  # PVP
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-pvp
+    ref: main
+    dest: ./resources/[feather]/feather-pvp
+
+  # Settings
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-settings
+    ref: main
+    dest: ./resources/[feather]/feather-settings
+
+  # Toolkit
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-toolkit
+    ref: main
+    dest: ./resources/[feather]/feather-toolkit
+
+  # Versioner
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-versioner
+    ref: main
+    dest: ./resources/[feather]/feather-versioner
+
+  # HUD
   - action: download_file
     path: ./temp/files/feather-hud.zip
     url: https://github.com/DavFount/feather-hud/releases/latest/download/feather-hud.zip
@@ -65,7 +107,7 @@ tasks:
     src: ./temp/files/feather-menu.zip
     dest: ./resources/[feather]/feather-menu
 
-    # Admin
+  # Admin
   - action: download_github
     src: https://github.com/FeatherFramework/feather-admin
     ref: main
