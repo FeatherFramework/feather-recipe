@@ -8,19 +8,20 @@
 - UUID Character creation, selection, appearance, deletion, spawn, travel, logout, and doctor respawn
 - Transactional Inventory with metadata, revisions, equipment, access control, and UUID ownership
 - Persistent Weapons equipment, ammunition, condition, repair, and attachments
+- Character-scoped roles with active-character authority and account-wide hierarchy protection
 - Account-based Admin moderation, reports, cases, player notes, inventory inspection, and weapon grants
 - Authoritative routing buckets and restart-safe character selection isolation
 - Standalone notification, world, PVP, settings, and reusable Toolkit services
 - Optional operator-owned GitHub release reporting through Feather Versioner
 - Feather Menu and HUD integration
 
-Core, Character, and Admin apply their own versioned database migrations when
+Core, Character, Roles, and Admin apply their own database migrations when
 the server starts. The recipe bootstraps only Inventory's base catalog tables
 and the supported starter items.
 
 The generated startup order loads Core before its providers and consumers,
-Routing before Character, PVP before Settings, and Versioner after all checked
-framework resources.
+Routing before Character, Roles after Character, PVP before Settings, and
+Versioner after all checked framework resources.
 
 ## Setup Guide and Requirements
 

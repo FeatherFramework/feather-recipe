@@ -2,7 +2,7 @@ $engine: 3
 $onesync: on
 name: Feather
 description: The official recipe for Feather Framework.
-version: 2.1.0
+version: 2.2.1
 author: bcc
 
 tasks:
@@ -107,17 +107,17 @@ tasks:
     src: ./temp/files/feather-menu.zip
     dest: ./resources/[feather]/feather-menu
 
-  # Admin
-  - action: download_github
-    src: https://github.com/FeatherFramework/feather-admin
-    ref: main
-    dest: ./resources/[feather]/feather-admin
-
   # Character
   - action: download_github
     src: https://github.com/FeatherFramework/feather-character
     ref: main
     dest: ./resources/[feather]/feather-character
+
+  # Roles
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-roles
+    ref: main
+    dest: ./resources/[feather]/feather-roles
 
   # Weapons
   - action: download_github
@@ -134,6 +134,12 @@ tasks:
     src: ./temp/files/feather-inventory.zip
     dest: ./resources/[feather]/feather-inventory
     timeoutSeconds: 600
+
+  # Admin
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-admin
+    ref: main
+    dest: ./resources/[feather]/feather-admin
 
   # Download OxmySQL dependency
   - action: download_file
