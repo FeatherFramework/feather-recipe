@@ -92,7 +92,7 @@ tasks:
   # HUD
   - action: download_file
     path: ./temp/files/feather-hud.zip
-    url: https://github.com/DavFount/feather-hud/releases/latest/download/feather-hud.zip
+    url: https://github.com/FeatherFramework/feather-hud/releases/latest/download/feather-hud.zip
 
   - action: unzip
     src: ./temp/files/feather-hud.zip
