@@ -19,8 +19,8 @@ INSERT INTO `items`
 VALUES
     ('consumable_apple', 'Apple', 'A tasty apple.', 100, 20, 1.00, 1, 4, 'item_item', 'stack'),
     ('water_bottle_small', 'Small Water', 'A small bottle of water.', 100, 1, 2.00, 1, 4, 'item_item', 'unique'),
-    ('cattleman_revolver', 'Cattleman Revolver', 'A standard single-action revolver.', 20, 1, 2.00, 1, 3, 'item_weapon', 'unique'),
-    ('schofield_revolver', 'Schofield Revolver', 'A sturdy top-break revolver.', 20, 1, 2.00, 1, 3, 'item_weapon', 'unique'),
+    ('revolver_cattleman', 'Cattleman Revolver', 'A standard single-action revolver.', 20, 1, 2.00, 1, 3, 'item_weapon', 'unique'),
+    ('revolver_schofield', 'Schofield Revolver', 'A sturdy top-break revolver.', 20, 1, 2.00, 1, 3, 'item_weapon', 'unique'),
     ('revolver_standard', 'Revolver Ammunition', 'Standard ammunition for revolvers.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('weapon_repair_kit', 'Weapon Repair Kit', 'Materials used to repair a damaged weapon.', 20, 10, 1.00, 1, 8, 'item_item', 'stack'),
     ('cattleman_long_barrel', 'Cattleman Long Barrel', 'A long barrel made for the Cattleman Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
