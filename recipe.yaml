@@ -2,7 +2,7 @@ $engine: 3
 $onesync: on
 name: Feather
 description: The official recipe for Feather Framework.
-version: 2.2.2
+version: 2.2.3
 author: bcc
 
 tasks:
@@ -41,6 +41,12 @@ tasks:
     dest: ./servericon.png
 
   # Downloading Feather Framework Scripts
+  # Load Screen
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-loadscreen
+    ref: main
+    dest: ./resources/[feather]/feather-loadscreen
+
   # Core
   - action: download_github
     src: https://github.com/FeatherFramework/feather-core
