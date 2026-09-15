@@ -71,7 +71,8 @@ VALUES
     ('ammo_varmint', 'Rifle Cartridges - Varmint', 'Regular .22 caliber cartridges for varmint rifles.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('ammo_varmint_tranquilizer', 'Rifle Cartridges - Tranquilizer', 'Tranquilizer cartridges for varmint rifles.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('gun_oil', 'Gun Oil', 'Gun oil used to clean and restore weapon condition.', 20, 10, 1.00, 1, 8, 'item_item', 'stack'),
-    ('cattleman_long_barrel', 'Cattleman Long Barrel', 'A long barrel made for the Cattleman Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
+    ('cattleman_long_barrel', 'Cattleman Long Barrel', 'A long barrel made for the Cattleman Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
+    ('cattleman_wide_sight', 'Cattleman Wide Sight', 'A wide sight made for the Cattleman Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
 ON DUPLICATE KEY UPDATE
     `display_name` = VALUES(`display_name`),
     `description` = VALUES(`description`),
