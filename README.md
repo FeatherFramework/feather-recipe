@@ -14,14 +14,27 @@
 - Standalone notification, world, PVP, settings, and reusable Toolkit services
 - Optional operator-owned GitHub release reporting through Feather Versioner
 - Feather Menu and HUD integration
+- Economy-owned UUID wallets, integer balances, balanced journal, and durable payment/refund receipts
+- Feather Shops catalog, quotes, purchases, compensation, and background reconciliation
 
-Core, Character, Roles, and Admin apply their own database migrations when
+Core, Character, Roles, Admin, Economy, and Shops apply their own database migrations when
 the server starts. The recipe bootstraps only Inventory's base catalog tables
 and the supported starter items.
 
 The generated startup order loads Core before its providers and consumers,
-Routing before Character, Roles after Character, PVP before Settings, and
+Economy before Character/HUD, Shops after Inventory and its Menu v2/Toolkit
+dependencies, Routing before Character, Roles after Character, PVP before Settings, and
 Versioner after all checked framework resources.
+
+Economy and Shops download their FeatherFramework main branches. Ensure the
+tested integrations are merged upstream before deploying the updated recipe;
+HUD and Inventory release downloads must also include the corresponding tested
+contracts. For public deployment disable development commands (Economy/Shops
+DevMode and Shops shops_dev_tests metadata) and configure Economy supply policy
+authorization. Development test funding is not starter-money configuration.
+
+The Feather-native bcc-stashes rewrite is not downloaded yet: its deployment
+repository must be identified first. Do not substitute the original VORP resource.
 
 ## Setup Guide and Requirements
 
