@@ -16,22 +16,31 @@
 - Feather Menu and HUD integration
 - Economy-owned UUID wallets, integer balances, balanced journal, and durable payment/refund receipts
 - Feather Shops catalog, quotes, purchases, compensation, and background reconciliation
+- Canonical Organizations business identities, lifecycle, interests, audit history, and events
 
-Core, Character, Roles, Admin, Economy, and Shops apply their own database migrations when
+Core, Character, Roles, Admin, Economy, Organizations, and Shops apply their own database migrations when
 the server starts. The recipe bootstraps only Inventory's base catalog tables
 and the supported starter items.
 
 The generated startup order loads Core before its providers and consumers,
-Economy before Character/HUD, Shops after Inventory and its Menu v2/Toolkit
+Economy before Character/HUD, Admin after Roles/Inventory, Organizations after
+Admin's service policy, and Shops after Organizations and its Inventory/Menu v2/Toolkit
 dependencies, Routing before Character, Roles after Character, PVP before Settings, and
 Versioner after all checked framework resources.
 
-Economy and Shops download their FeatherFramework main branches. Ensure the
+Economy, Organizations, and Shops download their FeatherFramework main branches. Ensure the
 tested integrations are merged upstream before deploying the updated recipe;
 HUD and Inventory release downloads must also include the corresponding tested
-contracts. For public deployment disable development commands (Economy/Shops
+contracts. For public deployment disable development commands (Economy/Organizations/Shops
 DevMode and Shops shops_dev_tests metadata) and configure Economy supply policy
 authorization. Development test funding is not starter-money configuration.
+
+Keep Organizations service authorization enabled and Admin's narrow Shops
+create/update grants installed. New Shops payments settle to organization
+treasuries; existing accepted destinations remain unchanged. The development-only
+`feather-organizations-tests` fixture is intentionally excluded. Clean deployment
+still requires the tested Admin, Economy, Organizations, and Shops changes to be
+available on the downloaded refs.
 
 The Feather-native bcc-stashes rewrite is not downloaded yet: its deployment
 repository must be identified first. Do not substitute the original VORP resource.
