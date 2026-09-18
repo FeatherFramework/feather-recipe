@@ -2,7 +2,7 @@ $engine: 3
 $onesync: on
 name: Feather
 description: The official recipe for Feather Framework.
-version: 2.2.5
+version: 2.2.6
 author: bcc
 
 tasks:
@@ -155,6 +155,12 @@ tasks:
     src: ./temp/files/feather-inventory.zip
     dest: ./resources/[feather]/feather-inventory
     timeoutSeconds: 600
+
+  # Organizations (canonical business identity; server-only Lua)
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-organizations
+    ref: main
+    dest: ./resources/[feather]/feather-organizations
 
   # Shops (Lua client uses the already-installed Menu v2)
   - action: download_github
