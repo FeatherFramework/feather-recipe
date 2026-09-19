@@ -2,7 +2,7 @@ $engine: 3
 $onesync: on
 name: Feather
 description: The official recipe for Feather Framework.
-version: 2.2.6
+version: 2.3.0
 author: bcc
 
 tasks:
@@ -162,17 +162,23 @@ tasks:
     ref: main
     dest: ./resources/[feather]/feather-organizations
 
+  # Authority (durable account capabilities, roles, and assignments)
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-authority
+    ref: main
+    dest: ./resources/[feather]/feather-authority
+
+  # Admin (installs the default policy provider and consumes Authority)
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-admin
+    ref: main
+    dest: ./resources/[feather]/feather-admin
+
   # Shops (Lua client uses the already-installed Menu v2)
   - action: download_github
     src: https://github.com/FeatherFramework/feather-shops
     ref: main
     dest: ./resources/[feather]/feather-shops
-
-  # Admin
-  - action: download_github
-    src: https://github.com/FeatherFramework/feather-admin
-    ref: main
-    dest: ./resources/[feather]/feather-admin
 
   # Download OxmySQL dependency
   - action: download_file

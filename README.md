@@ -9,7 +9,8 @@
 - Transactional Inventory with metadata, revisions, equipment, access control, and UUID ownership
 - Persistent Weapons equipment, ammunition, condition, repair, and attachments
 - Character-scoped roles with active-character authority and account-wide hierarchy protection
-- Account-based Admin moderation, reports, cases, player notes, inventory inspection, and weapon grants
+- Durable account-scoped Authority capabilities, staff roles, assignments, hierarchy, and policy evaluation
+- Authority-backed Admin moderation, reports, cases, player notes, inventory inspection, and weapon grants
 - Authoritative routing buckets and restart-safe character selection isolation
 - Standalone notification, world, PVP, settings, and reusable Toolkit services
 - Optional operator-owned GitHub release reporting through Feather Versioner
@@ -18,28 +19,28 @@
 - Feather Shops catalog, quotes, purchases, compensation, and background reconciliation
 - Canonical Organizations business identities, lifecycle, interests, audit history, and events
 
-Core, Character, Roles, Admin, Economy, Organizations, and Shops apply their own database migrations when
+Core, Character, Roles, Admin, Economy, Organizations, Authority, and Shops apply their own database migrations when
 the server starts. The recipe bootstraps only Inventory's base catalog tables
 and the supported starter items.
 
 The generated startup order loads Core before its providers and consumers,
-Economy before Character/HUD, Admin after Roles/Inventory, Organizations after
-Admin's service policy, and Shops after Organizations and its Inventory/Menu v2/Toolkit
+Economy before Character/HUD, Organizations before Authority, Authority before Admin,
+and Shops after Admin plus its Organizations/Inventory/Menu v2/Toolkit
 dependencies, Routing before Character, Roles after Character, PVP before Settings, and
 Versioner after all checked framework resources.
 
-Economy, Organizations, and Shops download their FeatherFramework main branches. Ensure the
+Economy, Organizations, Authority, Admin, and Shops download their FeatherFramework main branches. Ensure the
 tested integrations are merged upstream before deploying the updated recipe;
 HUD and Inventory release downloads must also include the corresponding tested
 contracts. For public deployment disable development commands (Economy/Organizations/Shops
 DevMode and Shops shops_dev_tests metadata) and configure Economy supply policy
 authorization. Development test funding is not starter-money configuration.
 
-Keep Organizations service authorization enabled and Admin's narrow Shops
-create/update grants installed. New Shops payments settle to organization
+Keep Organizations and Authority authorization enabled and Admin's composite policy
+provider installed. Retain Admin's narrow Shops create/update grants. New Shops payments settle to organization
 treasuries; existing accepted destinations remain unchanged. The development-only
 `feather-organizations-tests` fixture is intentionally excluded. Clean deployment
-still requires the tested Admin, Economy, Organizations, and Shops changes to be
+still requires the tested Admin, Authority, Economy, Organizations, and Shops changes to be
 available on the downloaded refs.
 
 The Feather-native bcc-stashes rewrite is not downloaded yet: its deployment
