@@ -76,7 +76,9 @@ VALUES
     ('schofield_short_barrel', 'Schofield Short Barrel', 'A short barrel made for the Schofield Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
     ('schofield_wide_sight', 'Schofield Wide Sight', 'A wide sight made for the Schofield Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
     ('lemat_long_barrel', 'LeMat Long Barrel', 'A long barrel made for the LeMat Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
-    ('lemat_wide_sight', 'LeMat Wide Sight', 'A wide sight made for the LeMat Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
+    ('lemat_wide_sight', 'LeMat Wide Sight', 'A wide sight made for the LeMat Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
+    ('navy_long_barrel', 'Navy Long Barrel', 'A long barrel made for the Navy Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
+    ('navy_wide_sight', 'Navy Wide Sight', 'A wide sight made for the Navy Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
 ON DUPLICATE KEY UPDATE
     `display_name` = VALUES(`display_name`),
     `description` = VALUES(`description`),
