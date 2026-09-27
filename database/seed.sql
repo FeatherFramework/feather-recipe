@@ -99,7 +99,9 @@ VALUES
     ('elephant_long_barrel', 'Elephant Long Barrel', 'A long barrel made for the Elephant Rifle.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
     ('elephant_wide_sight', 'Elephant Wide Sight', 'A wide sight made for the Elephant Rifle.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
     ('rollingblock_wide_sight', 'Rolling Block Wide Sight', 'A wide sight made for the Rolling Block Rifle.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
-    ('carcano_wide_sight', 'Carcano Wide Sight', 'A wide sight made for the Carcano Rifle.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
+    ('carcano_wide_sight', 'Carcano Wide Sight', 'A wide sight made for the Carcano Rifle.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
+    ('repeating_shotgun_long_barrel', 'Repeating Shotgun Long Barrel', 'A long barrel made for the Repeating Shotgun.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
+    ('repeating_shotgun_wide_sight', 'Repeating Shotgun Wide Sight', 'A wide sight made for the Repeating Shotgun.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
 ON DUPLICATE KEY UPDATE
     `display_name` = VALUES(`display_name`),
     `description` = VALUES(`description`),
