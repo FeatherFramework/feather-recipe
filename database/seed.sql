@@ -88,7 +88,8 @@ VALUES
     ('semiauto_long_barrel', 'Semi-Automatic Long Barrel', 'A long barrel made for the Semi-Automatic Pistol.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
     ('semiauto_wide_sight', 'Semi-Automatic Wide Sight', 'A wide sight made for the Semi-Automatic Pistol.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
     ('mauser_long_barrel', 'Mauser Long Barrel', 'A long barrel made for the Mauser Pistol.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
-    ('mauser_wide_sight', 'Mauser Wide Sight', 'A wide sight made for the Mauser Pistol.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
+    ('mauser_wide_sight', 'Mauser Wide Sight', 'A wide sight made for the Mauser Pistol.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
+    ('carbine_wide_sight', 'Carbine Wide Sight', 'A wide sight made for the Carbine Repeater.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
 ON DUPLICATE KEY UPDATE
     `display_name` = VALUES(`display_name`),
     `description` = VALUES(`description`),
