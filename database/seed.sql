@@ -94,7 +94,8 @@ VALUES
     ('litchfield_wide_sight', 'Litchfield Wide Sight', 'A wide sight made for the Litchfield Repeater.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
     ('evans_wide_sight', 'Evans Wide Sight', 'A wide sight made for the Evans Repeater.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
     ('springfield_wide_sight', 'Springfield Wide Sight', 'A wide sight made for the Springfield Rifle.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
-    ('boltaction_wide_sight', 'Bolt Action Wide Sight', 'A wide sight made for the Bolt Action Rifle.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
+    ('boltaction_wide_sight', 'Bolt Action Wide Sight', 'A wide sight made for the Bolt Action Rifle.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
+    ('varmint_wide_sight', 'Varmint Wide Sight', 'A wide sight made for the Varmint Rifle.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
 ON DUPLICATE KEY UPDATE
     `display_name` = VALUES(`display_name`),
     `description` = VALUES(`description`),
