@@ -84,7 +84,9 @@ VALUES
     ('m1899_long_barrel', 'M1899 Long Barrel', 'A long barrel made for the M1899 Pistol.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
     ('m1899_wide_sight', 'M1899 Wide Sight', 'A wide sight made for the M1899 Pistol.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
     ('volcanic_long_barrel', 'Volcanic Long Barrel', 'A long barrel made for the Volcanic Pistol.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
-    ('volcanic_wide_sight', 'Volcanic Wide Sight', 'A wide sight made for the Volcanic Pistol.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
+    ('volcanic_wide_sight', 'Volcanic Wide Sight', 'A wide sight made for the Volcanic Pistol.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
+    ('semiauto_long_barrel', 'Semi-Automatic Long Barrel', 'A long barrel made for the Semi-Automatic Pistol.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
+    ('semiauto_wide_sight', 'Semi-Automatic Wide Sight', 'A wide sight made for the Semi-Automatic Pistol.', 20, 10, 1.00, 0, 3, 'item_item', 'stack')
 ON DUPLICATE KEY UPDATE
     `display_name` = VALUES(`display_name`),
     `description` = VALUES(`description`),
