@@ -119,11 +119,6 @@ tasks:
     src: ./temp/files/feather-menu-v2.zip
     dest: ./resources/[feather]/feather-menu-v2
 
-  # Menu
-  - action: download_file
-    path: ./temp/files/feather-menu.zip
-    url: https://github.com/FeatherFramework/feather-menu/releases/latest/download/feather-menu.zip
-
   - action: unzip
     src: ./temp/files/feather-menu.zip
     dest: ./resources/[feather]/feather-menu
