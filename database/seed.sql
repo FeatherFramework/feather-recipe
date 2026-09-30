@@ -75,6 +75,7 @@ VALUES
     ('ammo_arrow_small_game', 'Arrow - Small Game', 'Small game arrows for bows.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('ammo_arrow_poison', 'Arrow - Poison', 'Poison-coated arrows for bows.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('ammo_arrow_fire', 'Arrow - Fire', 'Fire arrows for bows.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
+    ('ammo_arrow_dynamite', 'Arrow - Dynamite', 'Dynamite arrows for bows.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('gun_oil', 'Gun Oil', 'Gun oil used to clean and restore weapon condition.', 20, 10, 1.00, 1, 8, 'item_item', 'stack'),
     ('cattleman_long_barrel', 'Cattleman Long Barrel', 'A long barrel made for the Cattleman Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
     ('cattleman_wide_sight', 'Cattleman Wide Sight', 'A wide sight made for the Cattleman Revolver.', 20, 10, 1.00, 0, 3, 'item_item', 'stack'),
