@@ -44,6 +44,7 @@ VALUES
     ('weapon_revolver_cattleman', 'Cattleman Revolver', 'A standard single-action revolver.', 20, 1, 2.00, 1, 3, 'item_weapon', 'unique'),
     ('weapon_revolver_schofield', 'Schofield Revolver', 'A sturdy top-break revolver.', 20, 1, 2.00, 1, 3, 'item_weapon', 'unique'),
     ('weapon_bow', 'Bow', 'A standard hunting bow.', 20, 1, 2.00, 1, 3, 'item_weapon', 'unique'),
+    ('weapon_melee_knife', 'Knife', 'A standard hunting and utility knife.', 20, 1, 1.00, 1, 3, 'item_weapon', 'unique'),
     ('ammo_rifle_elephant', 'Rifle Cartridges - Nitro Express', 'Nitro Express cartridges for the Elephant Rifle.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('ammo_pistol_regular', 'Pistol Cartridges - Regular', 'Regular cartridges for pistols.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('ammo_pistol_express', 'Pistol Cartridges - Express', 'Express cartridges for pistols.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
