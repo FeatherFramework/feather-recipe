@@ -30,6 +30,10 @@ tasks:
     subpath: resources
     dest: ./resources
 
+  # Feather Chat replaces the bundled CFX chat and its example theme.
+  - action: remove_path
+    path: ./resources/[gameplay]/chat-theme-example
+
   # Move the server config over
   - action: move_path
     src: ./temp/feather-recipe/server.cfg
@@ -122,6 +126,15 @@ tasks:
   - action: unzip
     src: ./temp/files/feather-menu.zip
     dest: ./resources/[feather]/feather-menu
+
+  # Chat (built runtime package, same latest-release layout as Inventory)
+  - action: download_file
+    path: ./temp/files/feather-chat.zip
+    url: https://github.com/FeatherFramework/feather-chat/releases/latest/download/feather-chat.zip
+
+  - action: unzip
+    src: ./temp/files/feather-chat.zip
+    dest: ./resources/[feather]/feather-chat
 
   # Character
   - action: download_github
