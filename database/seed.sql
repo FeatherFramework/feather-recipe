@@ -84,6 +84,7 @@ VALUES
     ('ammo_arrow_fire', 'Arrow - Fire', 'Fire arrows for bows.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('ammo_arrow_dynamite', 'Arrow - Dynamite', 'Dynamite arrows for bows.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('ammo_throwing_knives_regular', 'Throwing Knife - Regular', 'Regular throwing knives.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
+    ('ammo_throwing_knives_poison', 'Throwing Knife - Poison', 'Poison-coated throwing knives.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('ammo_tomahawk_regular', 'Tomahawk - Regular', 'Standard throwing tomahawks.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('ammo_tomahawk_ancient', 'Tomahawk - Ancient', 'Ancient throwing tomahawks.', 200, 50, 0.00, 1, 2, 'item_ammo', 'stack'),
     ('gun_oil', 'Gun Oil', 'Gun oil used to clean and restore weapon condition.', 20, 10, 1.00, 1, 8, 'item_item', 'stack'),
