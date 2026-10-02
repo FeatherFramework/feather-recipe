@@ -182,15 +182,6 @@ tasks:
     ref: main
     dest: ./resources/[feather]/feather-shops
 
-  # Download OxmySQL dependency
-  - action: download_file
-    path: ./temp/files/oxmysql.zip
-    url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
-
-  - action: unzip
-    src: ./temp/files/oxmysql.zip
-    dest: ./resources/[essentials]
-
   # Download Feather MySQL dependency.
   - action: download_file
     path: ./temp/files/feather-mysql.zip
