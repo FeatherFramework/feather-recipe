@@ -123,10 +123,6 @@ tasks:
     src: ./temp/files/feather-menu-v2.zip
     dest: ./resources/[feather]/feather-menu-v2
 
-  - action: unzip
-    src: ./temp/files/feather-menu.zip
-    dest: ./resources/[feather]/feather-menu
-
   # Chat (built runtime package, same latest-release layout as Inventory)
   - action: download_file
     path: ./temp/files/feather-chat.zip
