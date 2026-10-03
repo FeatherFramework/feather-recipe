@@ -17,6 +17,18 @@ INSERT INTO `items`
     (`name`, `display_name`, `description`, `max_quantity`, `max_stack_size`,
      `weight`, `usable`, `category_id`, `type`, `instance_mode`)
 VALUES
+    ('weapon_throwable_molotov', 'Fire Bottle', 'Unique Fire Bottle carrier.', 20, 1, 1.00, 1, 3, 'item_weapon', 'unique'),
+    ('ammo_molotov', 'Fire Bottle - Regular', 'Fire Bottle ammunition.', 100, 100, 0.10, 1, 2, 'item_ammo', 'stack'),
+    ('weapon_throwable_dynamite', 'Dynamite', 'Unique Dynamite carrier.', 20, 1, 1.00, 1, 3, 'item_weapon', 'unique'),
+    ('ammo_dynamite', 'Dynamite - Regular', 'Dynamite ammunition.', 100, 100, 0.10, 1, 2, 'item_ammo', 'stack'),
+    ('weapon_throwable_bolas_intertwined', 'Brookstone Bolas', 'Unique Bolas carrier.', 20, 1, 1.00, 1, 3, 'item_weapon', 'unique'),
+    ('ammo_bolas_intertwined', 'Bolas - Brookstone', 'Brookstone Bolas ammunition.', 100, 100, 0.10, 1, 2, 'item_ammo', 'stack'),
+    ('weapon_throwable_bolas', 'Bolas', 'Unique Bolas carrier.', 20, 1, 1.00, 1, 3, 'item_weapon', 'unique'),
+    ('ammo_bolas_regular', 'Bolas - Regular', 'Bolas ammunition.', 100, 100, 0.10, 1, 2, 'item_ammo', 'stack'),
+    ('weapon_throwable_bolas_hawkmoth', 'Hawkmoth Bolas', 'Unique Bolas carrier.', 20, 1, 1.00, 1, 3, 'item_weapon', 'unique'),
+    ('ammo_bolas_hawkmoth', 'Hawkmoth Bolas Ammunition', 'Bolas ammunition.', 100, 100, 0.10, 1, 2, 'item_ammo', 'stack'),
+    ('weapon_throwable_bolas_ironspiked', 'Gravesend Bolas', 'Unique Bolas carrier.', 20, 1, 1.00, 1, 3, 'item_weapon', 'unique'),
+    ('ammo_bolas_ironspiked', 'Gravesend Bolas Ammunition', 'Bolas ammunition.', 100, 100, 0.10, 1, 2, 'item_ammo', 'stack'),
     ('consumable_apple', 'Apple', 'A tasty apple.', 100, 20, 1.00, 1, 4, 'item_item', 'stack'),
     ('water_bottle_small', 'Small Water', 'A small bottle of water.', 100, 1, 2.00, 1, 4, 'item_item', 'unique'),
     ('weapon_pistol_volcanic', 'Volcanic Pistol', 'Volcanic Pistol.', 20, 1, 2.00, 1, 3, 'item_weapon', 'unique'),
