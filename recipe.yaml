@@ -117,7 +117,7 @@ tasks:
   # Menu v2
   - action: download_file
     path: ./temp/files/feather-menu-v2.zip
-    url: https://github.com/FeatherFramework/feather-menu-v2/releases/download/v2.0.0-alpha.7/feather-menu-v2.zip
+    url: https://github.com/FeatherFramework/feather-menu-v2/releases/download/v2.0.0-alpha.8/feather-menu-v2.zip
 
   - action: unzip
     src: ./temp/files/feather-menu-v2.zip
