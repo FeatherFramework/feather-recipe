@@ -132,6 +132,12 @@ tasks:
     src: ./temp/files/feather-chat.zip
     dest: ./resources/[feather]/feather-chat
 
+  # Medical (resource-owned migrations and configured hospital recovery)
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-medical
+    ref: main
+    dest: ./resources/[feather]/feather-medical
+
   # Character
   - action: download_github
     src: https://github.com/FeatherFramework/feather-character
