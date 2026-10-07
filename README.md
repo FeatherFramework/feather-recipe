@@ -7,6 +7,7 @@
 - Contract-based Core account identity, sessions, RPC, events, providers, policies, and guards
 - UUID Character creation, selection, appearance, deletion, spawn, travel, logout, and doctor respawn
 - Transactional Inventory with metadata, revisions, equipment, access control, and UUID ownership
+- Medical death persistence, player-requested nearest-hospital respawn, and staff revival
 - Persistent Weapons equipment, ammunition, condition, repair, and attachments
 - Character-scoped roles with active-character authority and account-wide hierarchy protection
 - Durable account-scoped Authority capabilities, staff roles, assignments, hierarchy, and policy evaluation
@@ -19,7 +20,7 @@
 - Feather Shops catalog, quotes, purchases, compensation, and background reconciliation
 - Canonical Organizations business identities, lifecycle, interests, audit history, and events
 
-Core, Character, Roles, Admin, Economy, Organizations, Authority, and Shops apply their own database migrations when
+Core, Character, Medical, Roles, Admin, Economy, Organizations, Authority, and Shops apply their own database migrations when
 the server starts. The recipe bootstraps only Inventory's base catalog tables
 and the supported starter items.
 
@@ -58,3 +59,16 @@ repository must be identified first. Do not substitute the original VORP resourc
 
 If you encounter any issues or have questions, post in our [discord](https://discord.gg/zBCPbPJGZw).
 You may also open an issue in GitHub.
+
+## Medical setup
+
+The recipe installs feather-medical from the FeatherFramework main branch and
+starts it after MySQL/Core/Toolkit and before Character. Medical creates its own
+database tables. Its settings are in feather-medical/config.lua; no Medical
+convars or extra SQL imports are needed. Medical is enabled by default and saved
+death is on, preventing logout from reviving a dead character. Players press E
+after the default two-minute wait to respawn at the nearest enabled hospital.
+
+Medical, Character and Admin must include the matching tested integration before
+this recipe is deployed. Make those changes available on the downloaded main
+branches first. See Medical's README for changing settings and troubleshooting.
