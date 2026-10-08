@@ -31,8 +31,8 @@ tasks:
     dest: ./resources
 
   # Feather Chat replaces the bundled CFX chat and its example theme.
-  - action: remove_path
-    path: ./resources/[gameplay]/chat-theme-example
+  # - action: remove_path
+  #   path: ./resources/[gameplay]/chat-theme-example
 
   # Move the server config over
   - action: move_path
@@ -56,6 +56,12 @@ tasks:
     src: https://github.com/FeatherFramework/feather-core
     ref: main
     dest: ./resources/[feather]/feather-core
+
+  # Audit
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-audit
+    ref: main
+    dest: ./resources/[feather]/feather-audit
 
   # Economy (resource-owned migrations; no recipe SQL duplication)
   - action: download_github
