@@ -184,6 +184,30 @@ tasks:
     ref: main
     dest: ./resources/[feather]/feather-admin
 
+  # Jobs (job definitions, grades, assignments and duty; resource-owned migrations)
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-jobs
+    ref: main
+    dest: ./resources/[feather]/feather-jobs
+
+  # Assets (horses, wagons, boats and their owners; resource-owned migrations)
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-assets
+    ref: main
+    dest: ./resources/[feather]/feather-assets
+
+  # Property (houses, rooms, premises, owners and tenants; resource-owned migrations)
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-property
+    ref: main
+    dest: ./resources/[feather]/feather-property
+
+  # Contracts (obligations settled through Economy; resource-owned migrations)
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-contracts
+    ref: main
+    dest: ./resources/[feather]/feather-contracts
+
   # Shops (Lua client uses the already-installed Menu v2)
   - action: download_github
     src: https://github.com/FeatherFramework/feather-shops
