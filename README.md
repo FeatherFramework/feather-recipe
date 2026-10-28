@@ -13,6 +13,8 @@
 - Durable account-scoped Authority capabilities, staff roles, assignments, hierarchy, and policy evaluation
 - Authority-backed Admin moderation, reports, cases, player notes, inventory inspection, and weapon grants
 - Authoritative routing buckets and restart-safe character selection isolation
+- Durable Access delegation with Inventory, Assets and Property providers
+- Feather Weather clock, regional weather, wind progression and simulation seasons
 - Standalone notification, world, PVP, settings, and reusable Toolkit services
 - Optional operator-owned GitHub release reporting through Feather Versioner
 - Feather Menu and HUD integration
@@ -20,15 +22,21 @@
 - Feather Shops catalog, quotes, purchases, compensation, and background reconciliation
 - Canonical Organizations business identities, lifecycle, interests, audit history, and events
 
-Core, Character, Medical, Roles, Admin, Economy, Organizations, Authority, and Shops apply their own database migrations when
+Core, Character, Medical, Admin, Economy, Organizations, Authority, Access, and Shops apply their own database migrations when
 the server starts. The recipe bootstraps only Inventory's base catalog tables
 and the supported starter items.
 
-The generated startup order loads Core before its providers and consumers,
-Economy before Character/HUD, Organizations before Authority, Authority before Admin,
-and Shops after Admin plus its Organizations/Inventory/Menu v2/Toolkit
-dependencies, Routing before Character, Roles after Character, PVP before Settings, and
-Versioner after all checked framework resources.
+The generated startup order loads MySQL before Core, Core/Audit before Access,
+and Access before its Inventory/Assets/Property providers. Weather starts before
+HUD, Character and Admin, so weather displays and scene/admin controls can connect.
+Economy starts before Character/HUD, Organizations before Authority, Authority before Admin,
+and Shops after Admin plus its Organizations/Inventory/Menu v2/Toolkit dependencies.
+Routing precedes Character, PVP precedes Settings, and Versioner starts last.
+
+Access and Weather download their FeatherFramework `main` branches. Access owns
+its migrations; no extra recipe SQL is imported. Weather is standalone and needs
+no database migration. It replaces weathersync: the recipe no longer downloads or
+starts that provider. Keep exactly one clock/weather provider enabled.
 
 Economy, Organizations, Authority, Admin, and Shops download their FeatherFramework main branches. Ensure the
 tested integrations are merged upstream before deploying the updated recipe;
