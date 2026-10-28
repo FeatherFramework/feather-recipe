@@ -63,6 +63,12 @@ tasks:
     ref: main
     dest: ./resources/[feather]/feather-audit
 
+  # Access (Core/MySQL delegation; resource-owned migrations)
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-access
+    ref: main
+    dest: ./resources/[feather]/feather-access
+
   # Economy (resource-owned migrations; no recipe SQL duplication)
   - action: download_github
     src: https://github.com/FeatherFramework/feather-economy
@@ -86,6 +92,12 @@ tasks:
     src: https://github.com/FeatherFramework/feather-world
     ref: main
     dest: ./resources/[feather]/feather-world
+
+  # Weather (standalone clock, wind, seasons and regional presentation)
+  - action: download_github
+    src: https://github.com/FeatherFramework/feather-weather
+    ref: main
+    dest: ./resources/[feather]/feather-weather
 
   # PVP
   - action: download_github
@@ -222,12 +234,6 @@ tasks:
   - action: unzip
     src: ./temp/files/feather-mysql.zip
     dest: ./resources/[feather]
-
-  # Download Weathersync dependency
-  - action: download_github
-    src: https://github.com/kibook/weathersync
-    ref: master
-    dest: ./resources/[essentials]/weathersync
 
   # Clean up db files
   - action: remove_path
