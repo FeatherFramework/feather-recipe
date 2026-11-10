@@ -23,8 +23,10 @@
 - Canonical Organizations business identities, lifecycle, interests, audit history, and events
 
 Core, Character, Medical, Admin, Economy, Organizations, Authority, Access, and Shops apply their own database migrations when
-the server starts. The recipe bootstraps only Inventory's base catalog tables
-and the supported starter items.
+the server starts. The recipe bootstraps Inventory's base catalog tables and
+supported starter items, then imports the shared-ammunition schema directly from
+the installed Inventory package. Inventory verifies that schema before becoming
+ready and creates missing tables automatically on standalone installations too.
 
 The generated startup order loads MySQL before Core, Core/Audit before Access,
 and Access before its Inventory/Assets/Property providers. Weather starts before
@@ -80,3 +82,22 @@ after the default two-minute wait to respawn at the nearest enabled hospital.
 Medical, Character and Admin must include the matching tested integration before
 this recipe is deployed. Make those changes available on the downloaded main
 branches first. See Medical's README for changing settings and troubleshooting.
+
+
+## Weapons ammunition installation
+
+This recipe requires the Inventory **0.14.3 or newer** runtime package containing
+`database/character_ammunition.sql`. Publish that tested Inventory release before
+merging/deploying this recipe change: `releases/latest` must contain the new file.
+Weapons and its declared dependencies are already downloaded and started in the
+required order. No development commands, ammunition grants or manual SQL import
+are needed for a new install.
+
+The recipe imports the packaged schema after extracting Inventory. On normal
+startup, Inventory creates missing ammunition tables and verifies their engines,
+columns and primary keys before admitting gameplay. Existing ammunition pools,
+revisions and operation receipts remain unchanged. Incompatible schemas stop
+readiness; they are not automatically altered or repaired. This recipe remains a
+clean-install bootstrap, not an upgrade script to run over an existing server.
+
+Run recipe contract checks with `python -m unittest discover -s tests`.

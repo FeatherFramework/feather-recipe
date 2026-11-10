@@ -2,7 +2,7 @@ $engine: 3
 $onesync: on
 name: Feather
 description: The official recipe for Feather Framework.
-version: 2.4.0
+version: 2.4.1
 author: bcc
 
 tasks:
@@ -177,6 +177,11 @@ tasks:
     src: ./temp/files/feather-inventory.zip
     dest: ./resources/[feather]/feather-inventory
     timeoutSeconds: 600
+
+  # Shared ammunition schema comes from Inventory's verified runtime package.
+  # Inventory also verifies this schema before readiness on every normal start.
+  - action: query_database
+    file: ./resources/[feather]/feather-inventory/database/character_ammunition.sql
 
   # Organizations (canonical business identity; server-only Lua)
   - action: download_github
