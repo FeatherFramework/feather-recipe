@@ -101,3 +101,5 @@ readiness; they are not automatically altered or repaired. This recipe remains a
 clean-install bootstrap, not an upgrade script to run over an existing server.
 
 Run recipe contract checks with `python -m unittest discover -s tests`.
+
+Native firearms and the five supported melee weapons are seeded with usable=0; equipment uses the native Weapons coordinator. Existing installations receive the corresponding definition-only update through Inventory startup; do not reimport seed.sql over a running database for this change.

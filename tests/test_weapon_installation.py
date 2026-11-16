@@ -6,6 +6,24 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 class WeaponInstallation(unittest.TestCase):
+    def test_tomahawk_is_an_actual_unit_without_generic_use(self):
+        seed=(ROOT / 'database/seed.sql').read_text(encoding='utf-8')
+        row=next(line for line in seed.splitlines() if "('weapon_thrown_tomahawk'," in line)
+        self.assertIn(", 0, 3, 'item_weapon', 'unique')",row)
+        self.assertIn('A standard throwing tomahawk.',row)
+        self.assertNotIn('carrier',row)
+    def test_melee_seed_has_no_generic_use(self):
+        seed=(ROOT / 'database/seed.sql').read_text(encoding='utf-8')
+        for name in ('knife','machete','hammer','cleaver','hatchet'):
+            row=next(line for line in seed.splitlines() if "('weapon_melee_"+name+"'," in line)
+            self.assertIn(", 0, 3, 'item_weapon', 'unique')", row)
+
+    def test_firearm_seed_has_no_generic_use(self):
+        seed=(ROOT / 'database/seed.sql').read_text(encoding='utf-8')
+        rows=[line for line in seed.splitlines() if re.search(r"\('weapon_(?:revolver|pistol|repeater|rifle|sniperrifle|shotgun)_",line)]
+        self.assertEqual(len(rows),24)
+        for row in rows:self.assertIn(", 0, 3, 'item_weapon', 'unique')",row)
+
     def test_inventory_schema_import_follows_runtime_extraction(self):
         recipe = (ROOT / 'recipe.yaml').read_text(encoding='utf-8')
         tasks = re.split(r'(?m)^  - action: ', recipe)[1:]
